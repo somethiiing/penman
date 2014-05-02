@@ -24,8 +24,8 @@ define('mods/nav', function(require, exports, module) {
 					e.stopPropagation();
 					that.showNav();
 				},
-				containerClick: function () {
-					that.containerClick();
+				closeNavi: function () {
+					that.closeNavi();
 				}
 			};
 		},
@@ -35,7 +35,7 @@ define('mods/nav', function(require, exports, module) {
 			this.nodes.navMenu.toggleClass('nav-open');
 		},
 		// 点击空白处关闭侧边栏
-		containerClick: function () {
+		closeNavi: function () {
 			var that = this;
 			if (that.nodes.$body.hasClass('body-nav-open')) {
 				that.nodes.bodyNavMenu.addClass('nav-transition');
@@ -54,7 +54,8 @@ define('mods/nav', function(require, exports, module) {
 		setDomEvents: function(action) {
 			action = action === 'add' ? 'on' : 'off';
 			this.nodes.navBtn[action]('click', this.bound.showNav);
-			this.nodes.container[action]('click', this.bound.containerClick);
+			this.nodes.container[action]('click', this.bound.closeNavi);
+			this.nodes.navMenu[action]('click', 'a', this.bound.closeNavi);
 		}
 	});
 
