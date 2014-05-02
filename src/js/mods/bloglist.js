@@ -84,7 +84,6 @@ define('mods/bloglist', function(require, exports, module) {
 		getContent: function(url) {
 			var that = this;
 
-			window.scrollTo(0, 1);
 			$nprogress.start();
 			//博主首页加载更多博文接口
 			$trans.request('blogArticleList', {
@@ -94,6 +93,7 @@ define('mods/bloglist', function(require, exports, module) {
 				onSuccess: function(res) {
 					res = $(res).find('section.posts').html();
 					that.nodes.root.html(res);
+					window.scrollTo(0, 1);
 				},
 				onFailure: function() {
 					$.log("网络错误");

@@ -70,7 +70,6 @@ define('mods/blog',function(require,exports,module){
 		//获取博文内容
 		getContent : function(url){
 			var that = this;
-			window.scrollTo(0,1);
 			$nprogress.start();
 
 			$trans.request('blogArticlecontent', {
@@ -83,6 +82,8 @@ define('mods/blog',function(require,exports,module){
 					$('pre code').each(function(i, e) {
 						$hljs.highlightBlock(e);
 					});
+					
+					window.scrollTo(0,1);
 				},
 				onFailure: function() {
 					$.log("网络错误");
