@@ -10,7 +10,8 @@ define('mods/nav', function(require, exports, module) {
 				navBtn: $('.nav-toggler'),
 				bodyNavMenu: $('body, .nav-menu'),
 				$body: $('body'),
-				navMenu: $('.nav-menu')
+				navMenu: $('.nav-menu'),
+				container: $('#container')
 			};
 		},
 		build: function() {
@@ -19,8 +20,12 @@ define('mods/nav', function(require, exports, module) {
 		setBound: function() {
 			var that = this;
 			this.bound = {
-				showNav: function() {
+				showNav: function(e) {
+					e.stopPropagation();
 					that.showNav();
+				},
+				containerClick: function () {
+					that.containerClick();
 				}
 			};
 		},
@@ -28,6 +33,15 @@ define('mods/nav', function(require, exports, module) {
 			this.nodes.bodyNavMenu.addClass('nav-transition');
 			this.nodes.$body.toggleClass('body-nav-open');
 			this.nodes.navMenu.toggleClass('nav-open');
+		},
+		// 点击空白处关闭侧边栏
+		containerClick: function () {
+			var that = this;
+			if (that.nodes.$body.hasClass('body-nav-open')) {
+				that.nodes.bodyNavMenu.addClass('nav-transition');
+				that.nodes.$body.toggleClass('body-nav-open');
+				that.nodes.navMenu.toggleClass('nav-open');
+			}
 		},
 		setListener: function(action) {
 			var bound = this.bound;
@@ -40,6 +54,7 @@ define('mods/nav', function(require, exports, module) {
 		setDomEvents: function(action) {
 			action = action === 'add' ? 'on' : 'off';
 			this.nodes.navBtn[action]('click', this.bound.showNav);
+			this.nodes.container[action]('click', this.bound.containerClick);
 		}
 	});
 
