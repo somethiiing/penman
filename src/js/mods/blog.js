@@ -67,6 +67,18 @@ define('mods/blog',function(require,exports,module){
 				this.getContent(href);
 			}
 		},
+		// 更新Disqus
+		updateDisqus: function () {
+			var url = $location.get().url;
+
+			DISQUS.reset({
+				reload: true,
+				config: function() {
+					this.page.identifier = "" + new Date().getTime();
+					this.page.url = url;
+				}
+			});
+		},
 		//获取博文内容
 		getContent : function(url){
 			var that = this;
@@ -82,8 +94,11 @@ define('mods/blog',function(require,exports,module){
 					$('pre code').each(function(i, e) {
 						$hljs.highlightBlock(e);
 					});
-					
+
 					window.scrollTo(0,1);
+
+					// 更新Disqus
+					that.updateDisqus();
 				},
 				onFailure: function() {
 					$.log("网络错误");
