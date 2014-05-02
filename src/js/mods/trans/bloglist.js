@@ -6,7 +6,8 @@ define('mods/trans/bloglist', function(require, exports, module) {
 	var g = trans.register.bind(trans);
 
 	g('blogArticleList', {
-		url: ''
+		url: '',
+        cache: true
 	});
 
 	module.exports = trans;
