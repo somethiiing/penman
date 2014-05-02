@@ -94,10 +94,12 @@ define('mods/bloglist', function(require, exports, module) {
 				onSuccess: function(res) {
 					res = $(res).find('section.posts').html();
 					that.nodes.root.html(res);
-					$nprogress.done();
 				},
 				onFailure: function() {
 					$.log("网络错误");
+				},
+				onComplete: function () {
+					$nprogress.done();
 				}
 			});
 		},

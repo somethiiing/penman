@@ -83,10 +83,12 @@ define('mods/blog',function(require,exports,module){
 					$('pre code').each(function(i, e) {
 						$hljs.highlightBlock(e);
 					});
-					$nprogress.done();
 				},
 				onFailure: function() {
 					$.log("网络错误");
+				},
+				onComplete: function () {
+					$nprogress.done();
 				}
 			});
 		},
