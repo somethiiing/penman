@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-    grunt.initConfig({           
+    grunt.initConfig({
         clean: {
             sass: [".sass-cache", "assets/css/style.css"],
             js: ["src/js/main.js", "assets/js/main.min.js"]
@@ -11,7 +11,7 @@ module.exports = function(grunt) {
                     sassDir: 'src/scss',
                     cssDir: 'assets/css',
                     environment: 'production'
-                }    
+                }
             },
             expanded: {
                 options: {
@@ -23,8 +23,8 @@ module.exports = function(grunt) {
             }
         },
         autoprefixer: {
-            options: {    
-                browsers: ['last 2 version']      
+            options: {
+                browsers: ['last 2 version']
             },
             build: {
                 src: 'assets/css/style.css'
@@ -48,11 +48,11 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: 'src/scss/**/*.scss',
-                tasks: ['clean:sass', 'compass:minified', 'compass:expanded', 'autoprefixer'],          
+                tasks: ['clean:sass', 'compass:minified', 'compass:expanded', 'autoprefixer'],
             },
             js: {
                 files: 'src/js/**/*.js',
-                tasks: ['clean:js', 'concat', 'uglify'],            
+                tasks: ['clean:js', 'concat', 'uglify'],
             }
         }
     });
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');    
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['clean:sass', 'clean:js', 'compass:minified', 'compass:expanded', 'autoprefixer', 'concat', 'uglify']);
-}
+};
