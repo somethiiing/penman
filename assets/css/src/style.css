@@ -424,6 +424,16 @@ BODY {
   clear: both;
 }
 
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 /* Typography
 ---------------------------------------- */
 PRE {
@@ -637,6 +647,7 @@ HR {
   margin-bottom: 33px;
   padding-bottom: 40px;
   border-bottom: 3px solid #eaeaea;
+  -webkit-animation: fadein 1s linear 1;
 }
 
 .post-content-temp {
@@ -645,6 +656,7 @@ HR {
 
 .post-full {
   border-bottom: 3px solid #eaeaea;
+  -webkit-animation: fadein 1s linear 1;
 }
 
 .post-header H2 {
