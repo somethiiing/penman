@@ -74,7 +74,7 @@ define('mods/blog',function(require,exports,module){
 		updateDisqus: function () {
 			var url = $location.get().url;
 
-			if (typeof DISQUS === 'Object') {
+			if (typeof DISQUS === 'object') {
 				DISQUS.reset({
 					reload: true,
 					config: function() {
