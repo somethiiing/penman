@@ -140,7 +140,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: 'src/js/**/*.js',
-                tasks: ['clean:js', 'concat', 'copy', 'uglify'],
+                tasks: ['clean:js', 'concat', 'copy', 'replace', 'uglify', 'clean:tmp'],
             }
         }
     });
