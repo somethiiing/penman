@@ -74,13 +74,15 @@ define('mods/blog',function(require,exports,module){
 		updateDisqus: function () {
 			var url = $location.get().url;
 
-			DISQUS.reset({
-				reload: true,
-				config: function() {
-					this.page.identifier = "" + new Date().getTime();
-					this.page.url = url;
-				}
-			});
+			if (typeof DISQUS === 'Object') {
+				DISQUS.reset({
+					reload: true,
+					config: function() {
+						this.page.identifier = "" + new Date().getTime();
+						this.page.url = url;
+					}
+				});
+			}
 		},
 		// 代码高亮
 		updateHljs: function () {
