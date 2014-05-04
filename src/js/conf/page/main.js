@@ -1,8 +1,8 @@
 requirejs.config({
-    baseUrl: "/src/js",
-    paths: {
-        // 'lib': 'core/chaos/jquery'
-    }
+    baseUrl: "/src/js"
+    // paths: {
+    //     'lib': 'core/chaos/jquery'
+    // }
 });
 
 requirejs(['conf/global', 'common/router', 'core/chaos/jquery'], function($global, $Router, $lib) {
