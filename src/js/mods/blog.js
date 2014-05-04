@@ -59,12 +59,15 @@ define('mods/blog',function(require,exports,module){
 		checkUpdate : function(){
 			var that = this;
 			var href = $location.get().url;
-			var prevUrl = this.get('currentUrl');
+			var prevUrl = that.get('currentUrl');
 			var firstLoad = that.nodes.root.attr('data-filled');
 			that.nodes.root.removeAttr('data-filled');
-			if(prevUrl !== href && this.matchUrl(href) && firstLoad !== 'true'){
-				this.set('currentUrl', href);
-				this.getContent(href);
+			if(prevUrl !== href && that.matchUrl(href) && firstLoad !== 'true'){
+				that.set('currentUrl', href);
+				that.getContent(href);
+			} else {
+				that.updateHljs();
+				that.updateDisqus();
 			}
 		},
 		// 更新Disqus
@@ -79,6 +82,12 @@ define('mods/blog',function(require,exports,module){
 				}
 			});
 		},
+		// 代码高亮
+		updateHljs: function () {
+			$('pre code').each(function(i, e) {
+				$hljs.highlightBlock(e);
+			});
+		},
 		//获取博文内容
 		getContent : function(url){
 			var that = this;
@@ -91,9 +100,8 @@ define('mods/blog',function(require,exports,module){
 				onSuccess: function(res) {
 					res = $(res).find('section.posts').html();
 					that.nodes.root.html(res);
-					$('pre code').each(function(i, e) {
-						$hljs.highlightBlock(e);
-					});
+
+					that.updateHljs();
 
 					window.scrollTo(0,1);
 
