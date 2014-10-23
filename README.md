@@ -10,3 +10,6 @@ bower-installer
 npm install
 grunt
 ```
+
+### TODO
+ * To complete document to configure the theme.
